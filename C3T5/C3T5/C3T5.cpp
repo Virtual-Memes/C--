@@ -60,7 +60,8 @@ void vector_s::V_All() {
 }
 void vector_s::Retire() {
 	system("cls");
-	cout << "当前有：\n经理：" << Manager::M_Count << " 名，技工：" << Technician::T_Count << " 名。\n共：" << Employee::Member_Count << " 人" << endl;
+	cout << "当前有：\n经理：" << Manager::M_Count << " 名，技工：" << Technician::T_Count << " 名。\n共：" << Employee::Member_Count << " 人\n" << endl;
+	cout << "请输入你要撤职的员工ID：";
 	string Des_ID;
 	cin >> Des_ID;
 	bool Deleted = false;
