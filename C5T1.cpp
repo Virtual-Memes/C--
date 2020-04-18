@@ -17,6 +17,10 @@ class Derived: public Base2, public Base1, public Base3 {
 public:	//派生类的公有成员
 	Derived(int a, int b, int c, int d): Base1(a), member2(d), member1(c), Base2(b)
 	{ }
+
+	//调整顺序后
+	/*Derived(int a, int b, int c, int d): Base2(a), member1(d), member2(c), Base1(b){ }*/
+	
 	//注意基类名的个数与顺序，//注意成员对象名的个数与顺序
 private:	//派生类的私有成员对象
 	Base1 member1;
