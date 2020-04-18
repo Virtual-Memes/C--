@@ -1,8 +1,10 @@
 ﻿#include "All.h"
 #include "Employee.h"
+//对静态成员变量赋初值
 int Employee::Member_Count = 0;
 int Manager::M_Count = 0;
 int Technician::T_Count = 0;
+//创建vector_s类操作vector存储
 class vector_s {
 private:
 	vector<Manager*> Vmanager;
@@ -15,10 +17,12 @@ public:
 	void Retire();
 	void Choose();
 };
+//主函数
 int main() {
 	vector_s s;
 	s.Choose();
 }
+//招募选项选取
 void vector_s::Employing() {
 	system("cls");
 	cout << "当前有：\n经理：" << Manager::M_Count << " 名，技工：" << Technician::T_Count << " 名。\n共：" << Employee::Member_Count << " 人" << endl;
@@ -45,19 +49,23 @@ void vector_s::Employing() {
 	cout << "当前有：\n经理：" << Manager::M_Count << " 名，技工：" << Technician::T_Count << " 名。\n共：" << Employee::Member_Count << " 人" << endl;
 	Choose();
 }
+//展示所有的成员信息
 void vector_s::V_All() {
 	system("cls");
 	cout << "当前有：\n经理：" << Manager::M_Count << " 名，技工：" << Technician::T_Count << " 名。\n共：" << Employee::Member_Count << " 人" << endl;
+	//迭代器遍历Vmanager并展示信息
 	cout << "\n经理职位人员详情：\n" << endl;
 	for (M_iterator = Vmanager.begin(); M_iterator != Vmanager.end(); M_iterator++) {
 		(*M_iterator)->Display();
 	}
+	//迭代器遍历Vtechician并展示信息
 	cout << "\n技工职位人员详情：\n" << endl;
 	for (T_iterator = Vtechnician.begin(); T_iterator != Vtechnician.end(); T_iterator++) {
 		(*T_iterator)->Display();
 	}
 	Choose();
 }
+//删除人员
 void vector_s::Retire() {
 	system("cls");
 	cout << "当前有：\n经理：" << Manager::M_Count << " 名，技工：" << Technician::T_Count << " 名。\n共：" << Employee::Member_Count << " 人\n" << endl;
@@ -65,6 +73,7 @@ void vector_s::Retire() {
 	string Des_ID;
 	cin >> Des_ID;
 	bool Deleted = false;
+	//迭代器遍历Manager的指针对象，执行操作
 	for (M_iterator = Vmanager.begin(); M_iterator != Vmanager.end(); M_iterator++) {
 		if ((*M_iterator)->ID == Des_ID) {
 			Manager* Temp_M;
@@ -75,6 +84,7 @@ void vector_s::Retire() {
 			break;
 		}
 	}
+	//迭代器遍历Techician的指针对象，执行操作
 	for (T_iterator = Vtechnician.begin(); T_iterator != Vtechnician.end(); T_iterator++) {
 		if ((*T_iterator)->ID == Des_ID) {
 			Technician* Temp_T;
@@ -85,6 +95,7 @@ void vector_s::Retire() {
 			break;
 		}
 	}
+	//提示是否删除成功
 	if (Deleted) {
 		cout << "成功撤职员工：" << "ID-" << Des_ID << endl;
 	}
@@ -93,6 +104,7 @@ void vector_s::Retire() {
 	}
 	Choose();
 }
+//进行方法选取，并循环操作
 void vector_s::Choose() {
 	cout << "(E/e->招募人员，V/v->查看所有人员信息，R/r->撤除人员，Esc->退出程序)\n请选择接下来的操作：";
 	char CH = _getch();
